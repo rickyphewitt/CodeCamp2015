@@ -1,0 +1,39 @@
+<apex:page showHeader="true" sidebar="false" controller="ImageSlideShowController">
+	<apex:sectionHeader title="MyHeaderTitle" subtitle="MyHeaderSubTitle" />
+	<apex:pageBlock title="MyPageBlockTitle">
+		<apex:pageBlockButtons location="top">
+
+		</apex:pageBlockButtons>
+		<apex:pageBlockSection title="MyPageBlockSectionTitle">
+
+		<apex:pageBlock id="pB" >
+				<apex:form id="frm">
+				<center>
+					<apex:repeat value="{!images}"  var="image">
+						<apex:image id="img" value="{!image.URL__c}" width="600" height="400"/>
+						<br></br>
+						<!--<apex:commandButton value="Next" styleClass="groovybutton" onclick="return next()"/>-->
+					</apex:repeat>
+				</center>
+				</apex:form>
+			</apex:pageBlock>
+
+		</apex:pageBlockSection>
+	</apex:pageBlock>
+
+
+
+	<script>
+	/*
+	function next()
+	{
+	alert(document.getElementById("page:pB:frm:img").src);
+	document.getElementById("page:pB:frm:img").src='';
+	return false;
+}*/
+	</script>
+
+
+
+
+</apex:page>
