@@ -8,9 +8,6 @@ private class ImageSlideShowControllerTest
 		ImageSlideShowController slideShowCon = new ImageSlideShowController();
 		List<Image__c> imagesToInsert = new List<Image__c>();
 
-		//testing method does not fail when no images are in the db
-		//List<Image__c> imagesToRetrieve = ImageSlideShowController.getImages();
-
 		//Assert an empty list
 		System.assertEquals(new List<Image__c>(), slideShowCon.images);
 		//Assert size as 0
@@ -30,6 +27,9 @@ private class ImageSlideShowControllerTest
 
 		//verify 50 images are picked up
 		System.assertEquals(50, slideShowCon2.imageCount);
+		//Run prev and next
+		slideShowCon2.next();
+		slideShowCon2.prev();
 
 	}
 }

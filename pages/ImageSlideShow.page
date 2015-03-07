@@ -2,38 +2,29 @@
 	<apex:sectionHeader title="MyHeaderTitle" subtitle="MyHeaderSubTitle" />
 	<apex:pageBlock title="MyPageBlockTitle">
 		<apex:pageBlockButtons location="top">
-
 		</apex:pageBlockButtons>
 		<apex:pageBlockSection title="MyPageBlockSectionTitle">
-
-		<apex:pageBlock id="pB" >
+		<apex:pageBlock id="noImages" rendered="{!imageCount == 0}">
+			No Images Found.
+		</apex:pageBlock>
+		<apex:pageBlock id="pB" rendered="{!imageCount > 0}">
 				<apex:form id="frm">
-				<center>
-					<apex:repeat value="{!images}"  var="image">
-						<apex:image id="img" value="{!image.URL__c}" width="600" height="400"/>
+					<center>
+						<apex:image id="img" value="{!images[currentImageNumb].URL__c}" width="600" height="400"/>
 						<br></br>
-						<!--<apex:commandButton value="Next" styleClass="groovybutton" onclick="return next()"/>-->
-					</apex:repeat>
-				</center>
+						<apex:commandButton value="Previous" action="{!prev}" rerender="frm" disabled="{!currentImageNumb == 0}">
+						<apex:param name="nickName" value="{!currentImageNumb}" assignTo="{!currentImageNumb}"/>
+						</apex:commandButton>
+						<apex:commandButton value="Next" action="{!next}" rerender="frm" disabled="{!currentImageNumb == (imageCount -1)}">
+						<apex:param name="nickName" value="{!currentImageNumb}" assignTo="{!currentImageNumb}"/>
+						</apex:commandButton>
+						<!--
+							apex:commandButton setter issue requires a rerender, even if its a hidden element
+							more: http://blog.jeffdouglas.com/2010/03/04/passing-parameters-with-a-commandbutton/
+						-->
+					</center>
 				</apex:form>
 			</apex:pageBlock>
-
 		</apex:pageBlockSection>
 	</apex:pageBlock>
-
-
-
-	<script>
-	/*
-	function next()
-	{
-	alert(document.getElementById("page:pB:frm:img").src);
-	document.getElementById("page:pB:frm:img").src='';
-	return false;
-}*/
-	</script>
-
-
-
-
 </apex:page>

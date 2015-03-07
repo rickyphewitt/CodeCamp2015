@@ -3,6 +3,8 @@ public with sharing class ImageSlideShowController {
 	//list that stores the images to show
 	Public List<Image__c> images 	{get; set;}
 	Public Integer imageCount 		{get; set;}
+	Public Image__c currentImage	{get; set;}
+	Public Integer currentImageNumb {get; set;}
 
 //https://developer.salesforce.com/forums/ForumsMain?id=906F00000008qukIAA
 
@@ -11,6 +13,11 @@ public with sharing class ImageSlideShowController {
 	{
 		images = getImages();
 		imageCount = images.size() != null ? images.size() : 0;
+		currentImageNumb = 0;
+		if(imageCount > 0)
+		{
+			currentImage = images[0];
+		}
 
 	}
 
@@ -31,4 +38,22 @@ public with sharing class ImageSlideShowController {
 		return imagesToReturn;
 
 	}
+
+	//method that returns the next images in the list
+	public pageReference next()
+	{
+		system.debug('###Next: ' + currentImageNumb);
+		currentImageNumb = currentImageNumb + 1;
+		return null;
+	}
+
+
+	//method that returns the prev images in the list
+	public pageReference prev()
+	{
+		system.debug('###Prev: ' + currentImageNumb);
+		currentImageNumb = currentImageNumb - 1;
+		return null;
+	}
+
 }
