@@ -6,8 +6,6 @@ public with sharing class ImageSlideShowController {
 	Public Image__c currentImage	{get; set;}
 	Public Integer currentImageNumb {get; set;}
 
-//https://developer.salesforce.com/forums/ForumsMain?id=906F00000008qukIAA
-
 	//constructor
 	public ImageSlideShowController()
 	{
@@ -42,7 +40,6 @@ public with sharing class ImageSlideShowController {
 	//method that returns the next images in the list
 	public pageReference next()
 	{
-		system.debug('###Next: ' + currentImageNumb);
 		currentImageNumb = currentImageNumb + 1;
 		return null;
 	}
@@ -51,7 +48,6 @@ public with sharing class ImageSlideShowController {
 	//method that returns the prev images in the list
 	public pageReference prev()
 	{
-		system.debug('###Prev: ' + currentImageNumb);
 		currentImageNumb = currentImageNumb - 1;
 		return null;
 	}
